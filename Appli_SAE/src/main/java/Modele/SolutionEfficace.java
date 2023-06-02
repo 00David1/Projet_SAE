@@ -31,34 +31,7 @@ public class SolutionEfficace extends Solution {
         while (!quetesRealisees.contains(0)){
             Quete queteLaPlusProche = trouverQueteLaPlusProche();
             int[] posQuete = trouverQueteLaPlusProche().getPos();
-            int x1 = positionActuelle[0];
-            int x2 = posQuete[0];
-            int y1 = positionActuelle[1];
-            int y2 = posQuete[1];
-            if ( x1 > x2){
-                while (x1 != x2){
-                    distanceJoueur += 1;
-                    x1 -= 1;
-                }
-            }
-            if ( x1 < x2){
-                while (x1 != x2){
-                    distanceJoueur += 1;
-                    x1 += 1;
-                }
-            }
-            if ( y1 > y2){
-                while (y1 != y2){
-                    distanceJoueur += 1;
-                    y1 -= 1;
-                }
-            }
-            if ( y1 < y2){
-                while (y1 != y2){
-                    distanceJoueur += 1;
-                    y1 += 1;
-                }
-            }
+            distanceJoueur = distanceJoueur(positionActuelle[0],positionActuelle[1],posQuete[0],posQuete[1]);
             if (queteLaPlusProche != null) {
                 quetesRealisees.add(queteLaPlusProche.getNumero());
                 quetesDisponibles.remove(queteLaPlusProche);
