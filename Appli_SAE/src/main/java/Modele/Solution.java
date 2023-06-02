@@ -103,4 +103,32 @@ public abstract class Solution {
 
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
+
+    protected int distanceJoueur(int x1, int y1, int x2, int y2){
+        if ( x1 > x2){
+            while (x1 != x2){
+                distanceJoueur += 1;
+                x1 -= 1;
+            }
+        }
+        if ( x1 < x2){
+            while (x1 != x2){
+                distanceJoueur += 1;
+                x1 += 1;
+            }
+        }
+        if ( y1 > y2){
+            while (y1 != y2){
+                distanceJoueur += 1;
+                y1 -= 1;
+            }
+        }
+        if ( y1 < y2){
+            while (y1 != y2){
+                distanceJoueur += 1;
+                y1 += 1;
+            }
+        }
+        return distanceJoueur;
+    }
 }
