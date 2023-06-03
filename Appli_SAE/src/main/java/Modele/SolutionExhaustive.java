@@ -1,6 +1,6 @@
-package Modele;
+package modele;
 
-import Modele.Quete;
+import modele.Quete;
 
 import java.util.ArrayList;
 import java.util.List;
