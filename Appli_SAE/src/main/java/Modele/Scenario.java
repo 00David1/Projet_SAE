@@ -1,6 +1,6 @@
-package Modele;
+package modele;
 
-import Modele.Quete;
+import modele.Quete;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.Comparator;
  * Cette classe représente un scénario composé de plusieurs quêtes.
  */
 public class Scenario {
-    final ArrayList<Quete> quetes; // Liste des quêtes du scénario
+    public final ArrayList<Quete> quetes; // Liste des quêtes du scénario
 
     /**
      * Constructeur de la classe Scenario.
