@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 /**
  * Cette classe représente l'application principale pour le calendrier du mois.
  */
@@ -19,13 +21,13 @@ public class Applic extends Application {
         Scene scene = new Scene(root,940,450);
 
 
-        /*File[] fichierCss = new File("src/css").listFiles();
+        File[] fichierCss = new File("src/css").listFiles();
         for(File fichier : fichierCss){
             scene.getStylesheets().add(fichier.toURI().toString());
-        }*/
+        }
 
         stage.setScene(scene);
-        stage.setTitle("Calendrier du mois");
+        stage.setTitle("SAE");
         stage.show();
 
 
@@ -39,5 +41,6 @@ public class Applic extends Application {
     public static void main (String [] args){
         Application.launch(args);
     }
+
 
 }
