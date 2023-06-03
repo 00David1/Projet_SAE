@@ -1,6 +1,6 @@
-package Modele;
+package modele;
 
-import Modele.Quete;
+import modele.Quete;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.List;
  * Classe abstraite représentant une solution pour résoudre des quêtes.
  */
 public abstract class Solution {
+    protected List<String> quetesRealiseesPendant; // Liste des quêtes réalisées
     protected List<Integer> quetesRealisees; // Liste des quêtes réalisées
     protected List<Quete> quetesDisponibles; // Liste des quêtes disponibles
     protected int[] positionActuelle; // Position actuelle du joueur
@@ -31,6 +32,7 @@ public abstract class Solution {
         this.niveauExperienceRequis = 0;
         this.distanceJoueur = 0;
         this.duree = 0;
+        this.quetesRealiseesPendant = new ArrayList<>() ;
     }
 
     /**
