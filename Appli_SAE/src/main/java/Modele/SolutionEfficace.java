@@ -1,8 +1,7 @@
-package Modele;
-
-import Modele.Quete;
+package modele;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,6 +36,7 @@ public class SolutionEfficace extends Solution {
                 quetesDisponibles.remove(queteLaPlusProche);
                 positionActuelle = queteLaPlusProche.getPos();
                 duree += queteLaPlusProche.getDuree();
+                quetesRealiseesPendant.add(queteLaPlusProche.getIntitule());
                 if(queteLaPlusProche.getNumero() != 0) {
                     niveauExperienceActuel += queteLaPlusProche.getExperience();
                 }
@@ -77,5 +77,29 @@ public class SolutionEfficace extends Solution {
             }
         }
         return queteLaPlusProche;
+    }
+
+    public List<Integer> getQuetesRealisees() {
+        return quetesRealisees;
+    }
+    public List<Integer> getNiveauExperienceActuel() {
+        return Collections.singletonList(niveauExperienceActuel);
+    }
+    public int getDistanceJoueur() {
+        return distanceJoueur;
+    }
+
+    public int getDureeSE() {return duree;}
+
+
+    public String getQuetesRealiseesPendant() {
+        StringBuilder sb = new StringBuilder();
+
+        for (String quete : quetesRealiseesPendant) {
+            sb.append(quete);
+            sb.append(System.lineSeparator());
+        }
+
+        return sb.toString();
     }
 }
