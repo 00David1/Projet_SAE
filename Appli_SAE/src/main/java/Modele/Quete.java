@@ -122,7 +122,7 @@ public class Quete {
      * @param precond les préconditions
      * @return une chaîne de caractères formatée représentant les préconditions
      */
-    private String formatPrecond(int[] precond) {
+    public String formatPrecond(int[] precond) {
         StringBuilder sb = new StringBuilder();
         sb.append("(");
 
