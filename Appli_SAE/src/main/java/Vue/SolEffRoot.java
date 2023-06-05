@@ -1,36 +1,33 @@
 package vue;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import modele.LectureFichierTexte;
-import modele.Quete;
 import modele.Scenario;
 import modele.SolutionEfficace;
-
-import java.util.ArrayList;
-import java.util.List;
+import modele.*;
 
 import java.io.File;
 
-public class GridPaneRoot extends GridPane {
-    public GridPaneRoot() {
-        this.setGridLinesVisible(true);
-        this.setHgap(8);
-        this.setVgap(20);
+public class SolEffRoot extends GridPane {
+
+
+    public SolEffRoot() {
+
+        setPadding(new Insets(10));
+        setVgap(10);
+        setHgap(10);
 
         //Lecture du fichier
         File nomFichier = new File("C:\\Users\\enola\\Desktop\\por\\ProSAE\\src\\Scenario\\scenario_0.txt");
         Scenario contenu = LectureFichierTexte.lecture(nomFichier);
-
         SolutionEfficace SolEff = new SolutionEfficace(contenu.quetes);
         SolEff.resoudreQuetes();
 
 
+
+        // ------------------------------------------------SOLUTION EFFICACE----------------------------------------------------
         // Création du titre avec nom Fichier
         String nomFichierSansChemin = nomFichier.getName();
         String nomFichierSansTrait = nomFichierSansChemin.replace("_", " ");
@@ -38,13 +35,13 @@ public class GridPaneRoot extends GridPane {
         Label titreLabel = new Label("Etude du " + nomFichierSansExtension);
 
         //Placement Titre
-        this.add(titreLabel, 1,0);
+        add(titreLabel, 1, 0);
 
 
         // Création des éléments
         Label TitrequetesRealiseesPdtLabel = new Label("Quêtes réalisées tout au long : ");
         TitrequetesRealiseesPdtLabel.setStyle("-fx-underline: true;");
-        Label quetesRealiseesPdtLabel = new Label( SolEff.getQuetesRealiseesPendant());
+        Label quetesRealiseesPdtLabel = new Label(SolEff.getQuetesRealiseesPendant());
 
 
         Label quetesRealiseesLabel = new Label("Quêtes Finales : " + SolEff.getQuetesRealisees());
@@ -60,19 +57,17 @@ public class GridPaneRoot extends GridPane {
 
 
         //Placement des éléments
-        this.add(TitrequetesRealiseesPdtLabel, 1,2);
-        this.add(quetesRealiseesPdtLabel, 1,3);
+        add(TitrequetesRealiseesPdtLabel, 1, 2);
+        add(quetesRealiseesPdtLabel, 1, 3);
 
-        this.add(quetesRealiseesLabel, 1,4);
+        add(quetesRealiseesLabel, 1, 4);
 
-        this.add(xpLabel, 1,5);
+        add(xpLabel, 1, 5);
 
-        this.add(distanceLabel, 1,6);
+        add(distanceLabel, 1, 6);
 
-        this.add(dureeLabel, 1,7);
-
-
-
+        add(dureeLabel, 1, 7);
 
     }
+
 }
