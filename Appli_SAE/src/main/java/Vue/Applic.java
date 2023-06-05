@@ -1,8 +1,16 @@
 package vue;
 
+import controleur.Controleur;
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modele.LectureFichierTexte;
+import modele.Scenario;
 
 import java.io.File;
 
@@ -16,21 +24,22 @@ public class Applic extends Application {
      *
      * @param stage La fenêtre principale de l'application
      */
+    @Override
     public void start(Stage stage) {
-        GridPaneRoot root = new GridPaneRoot();
+
+        HBoxRoot root = new HBoxRoot();
         Scene scene = new Scene(root,940,450);
 
 
         File[] fichierCss = new File("src/css").listFiles();
-        for(File fichier : fichierCss){
+        for (File fichier : fichierCss) {
             scene.getStylesheets().add(fichier.toURI().toString());
         }
+
 
         stage.setScene(scene);
         stage.setTitle("SAE");
         stage.show();
-
-
     }
 
     /**
@@ -41,6 +50,7 @@ public class Applic extends Application {
     public static void main (String [] args){
         Application.launch(args);
     }
+
 
 
 }
