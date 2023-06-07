@@ -1,52 +1,74 @@
 package vue;
 
+import controleur.Controleur;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import modele.ConstFichier;
 
-public class VBoxChoix extends VBox {
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-    private static SolEffRoot chSoleffroot = new SolEffRoot(); // Instance de la classe SolEffRoot
 
-    private static SolExRoot chSolExRoot = new SolExRoot(); // Instance de la classe SolExRoot
+public class VBoxChoix extends VBox implements ConstFichier {
+
+    private static SolEffRoot chSoleffroot; // Instance de la classe SolEffRoot
+
+    private static SolExRoot chSolExRoot; // Instance de la classe SolExRoot
+
+    private ComboBox<File> comboBoxFichiers;
+    private RadioButton btnEfficace;
+    private RadioButton btnExhaustive;
+
+    private static Controleur controleur = new Controleur();
+
 
     public VBoxChoix(){
 
-        Label TitrePage = new Label("Veuillez choisir la solution que vous souhaitez tester : ");
+        // Création titre
+        Label titrePage = new Label("Veuillez choisir la solution que vous souhaitez tester : ");
 
-        getChildren().add(TitrePage);
-        setMargin(TitrePage, new Insets(30, 0, 30, 0));
+        getChildren().add(titrePage);
+        setMargin(titrePage, new Insets(30, 0, 30, 0));
 
+        // création
+        comboBoxFichiers = new ComboBox<>();
+        comboBoxFichiers.getItems().addAll(SCENARIO);
+        comboBoxFichiers.getSelectionModel().select(0);
 
         //création des boutons pour les choix
-        RadioButton btnEfficace = new RadioButton("Efficace");
-        RadioButton btnExhaustive = new RadioButton("Exhaustive");
+        btnEfficace = new RadioButton("Efficace");
+        btnExhaustive = new RadioButton("Exhaustive");
         ToggleGroup toggleGroup = new ToggleGroup();
         btnEfficace.setToggleGroup(toggleGroup);
         btnExhaustive.setToggleGroup(toggleGroup);
 
         Button btnGo = new Button("Lancer");
 
-        //gestion du placement des boutons
+        // gestion du placement des éléments
+        setMargin(comboBoxFichiers, new Insets(0, 0, 20, 30));
         setMargin(btnEfficace, new Insets(0, 0, 20, 30));
         setMargin(btnExhaustive, new Insets(0, 0, 20, 30));
         setMargin(btnGo, new Insets(0, 0, 0, 45));
 
-        getChildren().addAll(btnEfficace, btnExhaustive, btnGo);
+        getChildren().addAll(comboBoxFichiers, btnEfficace, btnExhaustive, btnGo);
 
-        //création e l'utilisation des boutons
+        chSoleffroot = new SolEffRoot(this);
+        chSolExRoot = new SolExRoot(this);
+
+
         btnGo.setOnAction(event -> {
-            if (btnEfficace.isSelected()) {
-                HBoxRoot.setChSoleffroot(chSoleffroot);
-            } else if (btnExhaustive.isSelected()) {
-                HBoxRoot.setChSoleffroot(chSolExRoot);
-            }
+            controleur.setButtons(btnEfficace, btnExhaustive);
+            controleur.handle(event);
         });
-
-
     }
+
+    public File getChoixComboBox(){
+        return comboBoxFichiers.getSelectionModel().getSelectedItem();
+    }
+
+
 }
