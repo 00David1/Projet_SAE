@@ -4,7 +4,6 @@ package vue;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import modele.LectureFichierTexte;
 import modele.Scenario;
 import modele.SolutionEfficace;
@@ -15,62 +14,68 @@ import java.io.File;
 
 public class SolExRoot extends GridPane {
 
-    public SolExRoot() {
+    public SolExRoot(VBoxChoix vBoxChoix) {
 
         setPadding(new Insets(10));
         setVgap(10);
         setHgap(10);
 
         //Lecture du fichier
-        File nomFichier = new File("C:\\Users\\enola\\Desktop\\por\\ProSAE\\src\\Scenario\\scenario_2.txt");
-        Scenario contenu = LectureFichierTexte.lecture(nomFichier);
-        SolutionExhaustive SolEx = new SolutionExhaustive(contenu.quetes);
-        SolEx.resoudreQuetes();
+        File choixFichier = vBoxChoix.getChoixComboBox();  // Appel de la méthode avec des parenthèses
 
 
+        if (choixFichier != null) {
 
-        // ------------------------------------------------SOLUTION EXHAUSTIVE ----------------------------------------------------
-        // Création du titre avec nom Fichier
-        String nomFichierSansChemin = nomFichier.getName();
-        String nomFichierSansTrait = nomFichierSansChemin.replace("_", " ");
-        String nomFichierSansExtension = nomFichierSansTrait.replace(".txt", "");
-        Label titreLabel = new Label("Etude du " + nomFichierSansExtension);
+            File nomFichier = choixFichier;
+            Scenario contenu = LectureFichierTexte.lecture(nomFichier);
+            SolutionExhaustive SolEx = new SolutionExhaustive(contenu.quetes);
+            SolEx.resoudreQuetes();
 
-        //Placement Titre
-        add(titreLabel, 1, 0);
+            // ------------------------------------------------SOLUTION EXHAUSTIVE ----------------------------------------------------
+            //Création du titre avec nom Fichier
+            String nomFichierSansChemin = nomFichier.getName();
+            String nomFichierSansTrait = nomFichierSansChemin.replace("_", " ");
+            String nomFichierSansExtension = nomFichierSansTrait.replace(".txt", "");
+            Label titreLabel = new Label("Etude du " + nomFichierSansExtension);
 
-
-        // Création des éléments
-        Label TitrequetesRealiseesPdtLabel = new Label("Quêtes réalisées tout au long : ");
-        TitrequetesRealiseesPdtLabel.setStyle("-fx-underline: true;");
-        Label quetesRealiseesPdtLabel = new Label(SolEx.getQuetesRealiseesPendantEx());
-
-
-        Label quetesRealiseesLabel = new Label("Quêtes Finales : " + SolEx.getQuetesRealiseesEx());
+            //Placement Titre
+            add(titreLabel, 1, 0);
 
 
-        Label xpLabel = new Label("XP : " + SolEx.getNiveauExperienceActuelEx());
+            // Création des éléments
+            Label TitrequetesRealiseesPdtLabel = new Label("Quêtes réalisées tout au long : ");
+            TitrequetesRealiseesPdtLabel.setStyle("-fx-underline: true;");
+            Label quetesRealiseesPdtLabel = new Label(SolEx.getQuetesRealiseesPendantEx());
 
 
-        Label distanceLabel = new Label("Distance : " + SolEx.getDistanceJoueurEx());
+            Label quetesRealiseesLabel = new Label("Quêtes Finales : " + SolEx.getQuetesRealiseesEx());
 
 
-        Label dureeLabel = new Label("Durée : " + (SolEx.getDureeSEEx() + SolEx.getDistanceJoueurEx()));
+            Label xpLabel = new Label("XP : " + SolEx.getNiveauExperienceActuelEx());
 
 
-        //Placement des éléments
-        add(TitrequetesRealiseesPdtLabel, 1, 2);
-        add(quetesRealiseesPdtLabel, 1, 3);
+            Label distanceLabel = new Label("Distance : " + SolEx.getDistanceJoueurEx());
 
-        add(quetesRealiseesLabel, 1, 4);
 
-        add(xpLabel, 1, 5);
+            Label dureeLabel = new Label("Durée : " + (SolEx.getDureeSEEx() + SolEx.getDistanceJoueurEx()));
 
-        add(distanceLabel, 1, 6);
 
-        add(dureeLabel, 1, 7);
+            //Placement des éléments
+            add(TitrequetesRealiseesPdtLabel, 1, 2);
+            add(quetesRealiseesPdtLabel, 1, 3);
+
+            add(quetesRealiseesLabel, 1, 4);
+
+            add(xpLabel, 1, 5);
+
+            add(distanceLabel, 1, 6);
+
+            add(dureeLabel, 1, 7);
+
+        } else {
+            System.out.println("erreur");
+        }
 
     }
-
 
 }
