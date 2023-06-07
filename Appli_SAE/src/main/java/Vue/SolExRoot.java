@@ -21,7 +21,7 @@ public class SolExRoot extends GridPane {
         setPadding(new Insets(30, 0, 30, 0));
         setVgap(10);
         setHgap(10);
-        setGridLinesVisible(true);
+        setGridLinesVisible(false);
 
         //Lecture du fichier
         File choixFichier = vBoxChoix.getChoixComboBox();  // Appel de la méthode avec des parenthèses
