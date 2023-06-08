@@ -31,6 +31,15 @@ Nous avons utilisé la méthode en cascade, une approche de développement logic
 
 Nous avons utilisé la méthode en cascade, une approche de développement logiciel linéaire et séquentielle. Cette méthode consiste en des phases distinctes, allant de l'analyse des besoins à la maintenance, suivies dans un ordre préétabli. Elle nous a permis de progresser de manière structurée et prévisible, en assurant une gestion rigoureuse des délais et des coûts. Cependant, il convient de noter que cette méthode peut être moins flexible en cas de changements ou d'évolutions des exigences.
 
+
+![](Page1.jpg "Page 1")
+![](Page2.jpg "Page 2")
+![](Page3.jpg "Page 3")
+![](Page4.jpg "Page 4")
+![](Page5.jpg "Page 5")
+![](Page6.jpg "Page 6")
+![](Page7.jpg "Page 7")
+
 **III]  La conception générale**
 
 Voici le diagramme de classes de haut niveau contenant les classes et les relations entre les classes. 
