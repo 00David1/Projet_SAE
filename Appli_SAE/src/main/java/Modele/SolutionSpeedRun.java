@@ -49,11 +49,11 @@ public class SolutionSpeedRun {
 
         cheminMinDuree = trouverCheminMinDuree(cheminDureeMap);
         dureeMin = cheminDureeMap.get(cheminMinDuree);
-        System.out.println("Chemin avec la durée minimale : " + cheminMinDuree + " Durée minimale : " + dureeMin);
+        //System.out.println("Chemin avec la durée minimale : " + cheminMinDuree + " Durée minimale : " + dureeMin);
 
         cheminMaxDuree = trouverCheminMaxDuree(cheminDureeMap);
         dureeMax = cheminDureeMap.get(cheminMaxDuree);
-        System.out.println("Chemin avec la durée maximale : " + cheminMaxDuree + " Durée maximale : " + dureeMax);
+        //System.out.println("Chemin avec la durée maximale : " + cheminMaxDuree + " Durée maximale : " + dureeMax);
 
     }
 
