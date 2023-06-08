@@ -1,11 +1,14 @@
 .root{
     -fx-padding : 15;
-    -fx-background-color: #D6EAF8;
+    -fx-background-color: cornsilk ;
 }
 
 .label{
-    -fx-text-fill: #1E3DB0;
+    -fx-text-fill: #ff3359;
     -fx-font-size: 1em;
+}
+
+.label-gras {
     -fx-font-weight: bold;
 }
 
