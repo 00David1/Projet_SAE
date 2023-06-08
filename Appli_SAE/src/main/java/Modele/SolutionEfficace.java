@@ -9,6 +9,7 @@ import java.util.List;
  * Elle hérite de la classe abstraite Solution.
  */
 public class SolutionEfficace extends Solution {
+    private int distanceJ;
 
     /**
      * Constructeur de la classe SolutionEfficace.
@@ -17,6 +18,7 @@ public class SolutionEfficace extends Solution {
      */
     public SolutionEfficace(List<Quete> quetes) {
         super(quetes);
+        distanceJ = 0;
     }
 
     /**
@@ -29,25 +31,26 @@ public class SolutionEfficace extends Solution {
     public void resoudreQuetes() {
         while (!quetesRealisees.contains(0)){
             Quete queteLaPlusProche = trouverQueteLaPlusProche();
-            int[] posQuete = trouverQueteLaPlusProche().getPos();
-            distanceJoueur = distanceJoueur(positionActuelle[0],positionActuelle[1],posQuete[0],posQuete[1]);
             if (queteLaPlusProche != null) {
                 quetesRealisees.add(queteLaPlusProche.getNumero());
-                quetesDisponibles.remove(queteLaPlusProche);
+                quetes.remove(queteLaPlusProche);
                 positionActuelle = queteLaPlusProche.getPos();
                 duree += queteLaPlusProche.getDuree();
+                //System.out.println("2                "+ distanceJoueur);
+                distanceJ += distanceJoueur;
                 quetesRealiseesPendant.add(queteLaPlusProche.getIntitule());
                 if(queteLaPlusProche.getNumero() != 0) {
                     niveauExperienceActuel += queteLaPlusProche.getExperience();
                 }
-                System.out.println("Quêtes réalisées : " + queteLaPlusProche.getNumero() + " " + queteLaPlusProche.getIntitule());
+                //System.out.println("Quêtes réalisées : " + queteLaPlusProche.getNumero() + " " + queteLaPlusProche.getIntitule());
             }
         }
-        System.out.println("Quêtes réalisées : " + quetesRealisees +
+        /*System.out.println("Quêtes réalisées : " + quetesRealisees +
                 "\nXP : " + niveauExperienceActuel +
-                "\ndistance: " + distanceJoueur +
-                "\ndurée : "+ (duree + distanceJoueur));
+                "\ndistance: " + (distanceJ -2) +
+                "\ndurée : "+ (duree + distanceJ -2));*/
     }
+
 
     /**
      * Trouve la quête la plus proche du joueur parmi les quêtes disponibles.
@@ -58,9 +61,10 @@ public class SolutionEfficace extends Solution {
     @Override
     public Quete trouverQueteLaPlusProche() {
         Quete queteLaPlusProche = null;
-        double distanceMin = Double.MAX_VALUE;
+        int distanceMin = 1000;
 
-        for (Quete quete : quetesDisponibles) {
+
+        for (Quete quete : quetes) {
             if (verifierPreconditions(quete)) {
                 niveauExperienceRequis = quete.getExperience();
                 if (quete.getNumero() == 0 && niveauExperienceActuel >= niveauExperienceRequis) {
@@ -68,9 +72,11 @@ public class SolutionEfficace extends Solution {
                 }
                 if (quete.getNumero() != 0){
                     int[] posQuete = quete.getPos();
-                    double distance = calculerDistance(positionActuelle[0], positionActuelle[1], posQuete[0], posQuete[1]);
-                    if (distance < distanceMin) {
-                        distanceMin = distance;
+                    distanceJoueur = 0;
+                    distanceJoueur = calculerDistance(positionActuelle[0], positionActuelle[1], posQuete[0], posQuete[1]);
+                    //System.out.println("1          "+ distanceJoueur);
+                    if (distanceJoueur < distanceMin) {
+                        distanceMin = distanceJoueur;
                         queteLaPlusProche = quete;
                     }
                 }
@@ -86,7 +92,7 @@ public class SolutionEfficace extends Solution {
         return Collections.singletonList(niveauExperienceActuel);
     }
     public int getDistanceJoueur() {
-        return distanceJoueur;
+        return distanceJ;
     }
 
     public int getDureeSE() {return duree;}
