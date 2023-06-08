@@ -40,6 +40,7 @@ Voici le diagramme de classes de haut niveau contenant les classes et les relati
 Voici le diagramme des classes détaillé pour chaque composant : modèle, vue et contrôleur.
 ![](UML2.jpg "Le diagramme des classes détaillé")
 
+<br/>
 Dans ce dernier, nous retrouvons divers relations entre les tables tel que : 
 
 * Les dépendances : On retrouve les dépendances entre les Packages et les Classes venant ce de package. 
@@ -62,8 +63,9 @@ Dans ce dernier, nous retrouvons divers relations entre les tables tel que :
    * Scenario avec Quete par quetes
 
 
-Les Structures de données :
+<br/> Structures de données : 
 
+&nbsp;&nbsp;
 Nous avons mis en place différentes structures de données et stratégies algorithmiques pour résoudre efficacement les problèmes rencontrés. Voici une présentation de certaines d'entre elles :
 
 Tableaux (Arrays) : Les tableaux sont des structures de données linéaires qui stockent des éléments de manière contiguë en mémoire. Nous en avons notament utilisé dans la classe "Scenario". 
@@ -74,5 +76,6 @@ Liste (List) : Une liste est une structure de données qui peut contenir une sé
 
 **III]  Conclusion**
 
+&nbsp;&nbsp;&nbsp;
 En conclusion, notre équipe a accompli avec succès le niveau 1 de la SAE202 et nous sommes sur le point de finaliser le niveau 2 (nous n'avons pas tous les informations en sortie). Dans le cadre de la SAE201, nous avons réalisé une interface conviviale pour le niveau 1 ainsi que le niveau 2, offrant aux utilisateurs la possibilité de choisir le scénario et la méthode à utiliser. 
 Malgré notre désir d'une interface plus détaillée et professionnelle, nous sommes fiers du travail accompli. Nous avons créé une interface conviviale permettant aux utilisateurs de choisir le scénario et la méthode. Bien que nous aurions souhaité inclure plus de détails sur les calculs, nous avons fait de notre mieux compte tenu des contraintes de temps. Notre équipe a mis en œuvre des fonctionnalités solides et a acquis des connaissances précieuses tout au long du processus. Bien que nous reconnaissions qu'il y a toujours place à l'amélioration, nous sommes satisfaits des résultats obtenus.
