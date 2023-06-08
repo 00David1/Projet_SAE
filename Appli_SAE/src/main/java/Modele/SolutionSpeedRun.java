@@ -5,19 +5,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SpeedRun {
+public class SolutionSpeedRun {
     private List<List<Integer>> chemins;
     private List<Integer> durees; // Ajout de la liste des durées
     private List<Quete> quetes;
     private List<Quete> quetesCopy;
     private int[] posActuele ;
     private List<Integer> experienceTotal;
+
+    private List<Integer> cheminMinDuree;
+    private List<Integer> cheminMaxDuree;
+    private int dureeMin;
+    private int dureeMax;
     private int experienceRequis;
 
     /**
      * Constructeur de la classe CheminVersQuete0.
      */
-    public SpeedRun(List<Quete> quetes) {
+    public SolutionSpeedRun(List<Quete> quetes) {
         this.quetes = quetes;
         this.chemins = new ArrayList<>();
         this.durees = new ArrayList<>(); // Initialisation de la liste des durées
@@ -29,8 +34,8 @@ public class SpeedRun {
 
     public void afficherCheminsAvecDurees() {
         List<List<Integer>> chemins = obtenirChemins();
-        List<Integer> durees = getDurees();
-        List<Integer> experienceA = getExperienceTotal();
+        List<Integer> durees = getDureeSR();
+        List<Integer> experienceA = getExperienceTotalSR();
 
         Map<List<Integer>, Integer> cheminDureeMap = new HashMap<>();
 
@@ -42,9 +47,14 @@ public class SpeedRun {
             //System.out.println("Chemin : " + chemin + " Durée : " + duree + " XP : " + XP);
         }
 
-        List<Integer> cheminMinDuree = trouverCheminMinDuree(cheminDureeMap);
-        int dureeMin = cheminDureeMap.get(cheminMinDuree);
+        cheminMinDuree = trouverCheminMinDuree(cheminDureeMap);
+        dureeMin = cheminDureeMap.get(cheminMinDuree);
         System.out.println("Chemin avec la durée minimale : " + cheminMinDuree + " Durée minimale : " + dureeMin);
+
+        cheminMaxDuree = trouverCheminMaxDuree(cheminDureeMap);
+        dureeMax = cheminDureeMap.get(cheminMaxDuree);
+        System.out.println("Chemin avec la durée maximale : " + cheminMaxDuree + " Durée maximale : " + dureeMax);
+
     }
 
     /**
@@ -75,6 +85,27 @@ public class SpeedRun {
 
         return cheminMinDuree;
     }
+
+    private List<Integer> trouverCheminMaxDuree(Map<List<Integer>, Integer> cheminDureeMap) {
+        List<Integer> cheminMaxDuree = null;
+        int dureeMax = Integer.MIN_VALUE;
+
+
+        for (Map.Entry<List<Integer>, Integer> entry : cheminDureeMap.entrySet()) {
+            List<Integer> chemin = entry.getKey();
+            int duree = entry.getValue();
+
+
+            if (duree > dureeMax) {
+                dureeMax = duree;
+                cheminMaxDuree = chemin;
+            }
+        }
+
+
+        return cheminMaxDuree;
+    }
+
 
     /**
      * Résout les quêtes en ajoutant les quêtes réalisées à la liste et en
@@ -256,11 +287,28 @@ public class SpeedRun {
         return null;
     }
 
-    public List<Integer> getDurees() {
+    public List<Integer> getDureeSR() {
         return durees;
     }
 
-    public List<Integer> getExperienceTotal() {
+    public List<Integer> getcheminMinDuree(){
+        return cheminMinDuree;
+    }
+
+    public int getdureeMin(){
+        return dureeMin;
+    }
+
+    public List<Integer> getcheminMaxDuree(){
+        return cheminMaxDuree;
+    }
+
+    public int getdureeMax(){
+        return dureeMax;
+    }
+
+    public List<Integer> getExperienceTotalSR() {
         return experienceTotal;
     }
+
 }
