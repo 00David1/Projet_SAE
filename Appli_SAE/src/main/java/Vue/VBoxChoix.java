@@ -19,9 +19,12 @@ public class VBoxChoix extends VBox implements ConstFichier {
 
     private static SolExRoot chSolExRoot; // Instance de la classe SolExRoot
 
+    private static SolSpeedRoot chSolSpeedRoot; // Instance de la classe SolExRoot
+
     private ComboBox<File> comboBoxFichiers;
     private RadioButton btnEfficace;
     private RadioButton btnExhaustive;
+    private RadioButton btnSpeedRun;
 
     private static Controleur controleur = new Controleur();
 
@@ -30,6 +33,7 @@ public class VBoxChoix extends VBox implements ConstFichier {
 
         // Création titre
         Label titrePage = new Label("Veuillez choisir la solution que vous souhaitez tester : ");
+        titrePage.getStyleClass().add("label-gras");
 
         getChildren().add(titrePage);
         setMargin(titrePage, new Insets(30, 0, 30, 0));
@@ -37,14 +41,16 @@ public class VBoxChoix extends VBox implements ConstFichier {
         // création
         comboBoxFichiers = new ComboBox<>();
         comboBoxFichiers.getItems().addAll(SCENARIO);
-        comboBoxFichiers.getSelectionModel().select(0);
+
 
         //création des boutons pour les choix
         btnEfficace = new RadioButton("Efficace");
         btnExhaustive = new RadioButton("Exhaustive");
+        btnSpeedRun = new RadioButton("Speed Run");
         ToggleGroup toggleGroup = new ToggleGroup();
         btnEfficace.setToggleGroup(toggleGroup);
         btnExhaustive.setToggleGroup(toggleGroup);
+        btnSpeedRun.setToggleGroup(toggleGroup);
 
         Button btnGo = new Button("Lancer");
 
@@ -52,16 +58,21 @@ public class VBoxChoix extends VBox implements ConstFichier {
         setMargin(comboBoxFichiers, new Insets(0, 0, 20, 30));
         setMargin(btnEfficace, new Insets(0, 0, 20, 30));
         setMargin(btnExhaustive, new Insets(0, 0, 20, 30));
-        setMargin(btnGo, new Insets(0, 0, 0, 45));
+        setMargin(btnSpeedRun, new Insets(0, 0, 20, 30));
 
-        getChildren().addAll(comboBoxFichiers, btnEfficace, btnExhaustive, btnGo);
+        setMargin(btnGo, new Insets(0, 0, 0, 155));
+
+
+        getChildren().addAll(comboBoxFichiers, btnEfficace, btnExhaustive,btnSpeedRun, btnGo);
+
 
         chSoleffroot = new SolEffRoot(this);
         chSolExRoot = new SolExRoot(this);
+        chSolSpeedRoot = new SolSpeedRoot(this);
 
 
         btnGo.setOnAction(event -> {
-            controleur.setButtons(btnEfficace, btnExhaustive);
+            controleur.setButtons(btnEfficace, btnExhaustive, btnSpeedRun);
             controleur.handle(event);
         });
     }
