@@ -40,6 +40,30 @@ Voici le diagramme de classes de haut niveau contenant les classes et les relati
 Voici le diagramme des classes détaillé pour chaque composant : modèle, vue et contrôleur.
 ![](UML2.jpg "Le diagramme des classes détaillé")
 
+Dans ce dernier, nous retrouvons divers relations entre les tables tel que : 
+
+* Les dépendances : On retrouve les dépendances entre les Packages et les Classes venant ce de package. 
+  * Modèle à pour dépendance : Solution, Quete, LectureFichier,Scenario, SolutionEfficace, SolutionExaustive, SolutionSpeedRun. 
+  * Vue à pour dépendance : SolEffRoot, SolExRoot, SolSpeedRoot, GridPaneVide, VBoxChoix, HBoxRoot, Applic. 
+  * Controleur à pour dépendance : Controleur.
+* InterfaceRealization : On utilise qu'une seul fois cette relation pour ConstFichier relié à VBoxChoix.
+* Generalization : Nous utilisons cette relation pour relier les classes mère à leur(s) enfants. Par exemple : 
+   * SolExRoot, SolEffRoot ainsi que SolSpeedRoot reliées à GridPane.
+   * SolutionEfficace et SolutionExhaustive reliées à Solution.
+   * HBoxRoot relié à HBox 
+   * VBoxChoix relié à VBox
+   * Applic relié à Application
+* Association : On les utilisé pour relier les classes entre elles, quand elles sont utilisé dans l'une des classes. Par exemple : 
+   * SolutionEfficace et SolutionExhaustive avec Quete
+   * HBoxRoot avec GridPane
+* Association Directe : On les utilisé pour relier les classes entre elles, quand elles sont intacniées dans l'une d'entre elles. Par exemple : 
+   * HBoxRoot avec GridPaneVide par GridPaneVide
+   * HBoxRoot avec VBoxChoix par chChoix
+   * Scenario avec Quete par quetes
+
+
+Les Structures de données :
+
 Nous avons mis en place différentes structures de données et stratégies algorithmiques pour résoudre efficacement les problèmes rencontrés. Voici une présentation de certaines d'entre elles :
 
 Tableaux (Arrays) : Les tableaux sont des structures de données linéaires qui stockent des éléments de manière contiguë en mémoire. Nous en avons notament utilisé dans la classe "Scenario". 
